@@ -1,0 +1,46 @@
+<main>
+<div>
+<br>
+<br>
+<br>
+<div class = "limiter">
+  <div class = "container-table100">
+    <div class = "wrap-table100">
+      <div class = "table100 ver3">
+        <div class = "table100-head">
+          <table>
+            <tr class = "row100 head">
+              <th class = "cell100 column1"> Task</th>
+              <th class = "cell100 column2"> Finished</th>
+              <th class = "cell100 column3"> Remove</th>
+            </tr>
+          </table>
+        </div>
+        <div class = "table100-body js-pscroll ps ps--active-y">
+          <table>
+            <tbody>
+              <tr class = "row100 body" *ngFor="let task of tasks">           
+                <td class = "cell100 column1"> {{task.title}} </td>
+                <td class = "cell100 column2"> <input type="checkbox" id="Finished"> </td>
+                <td class = "cell100 column3"><button class = "button-24" (click)="deleteTask(task._id)" >X</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+  <input type="text" id="addnew" name="addnew" required
+       minlength="3" maxlength="25" size="25" placeholder="Enter task title" margin=3px #Tasktitle>
+       <br>
+       <button class = "button-29" (click)="getUserTasks()" style="margin:5px;">View Tasks</button>
+       <button class = "button-81" (click) = "addNewTask(Tasktitle.value,false)">Add</button>
+       <br>
+       <br>
+       <button class = "button-29" (click)="logout()" style="margin:5px;">Log Out</button>
+
+
+</div>
+</main>
