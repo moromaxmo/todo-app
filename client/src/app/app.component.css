@@ -5,25 +5,4 @@ main{
     background: linear-gradient(30deg, #bdc3c7, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-h1 { 
-    color: #CEF0D4; 
-    font-family: 'Rouge Script', cursive; 
-    font-size: 130px; 
-    font-weight: normal; 
-    line-height: 48px; 
-    margin: 0 0 50px; 
-    text-align: center; 
-    text-shadow: 1px 1px 2px #082b34; 
-}
-
-h2 { 
-    color: #CEF0D4; 
-    font-family: 'Oleo Script', cursive; 
-    font-size: 24px; 
-    font-weight: normal; 
-    line-height: 32px; 
-    margin: 0 0 18px; 
-    text-shadow: 1px 0 0 #082b34; 
-}
-
 

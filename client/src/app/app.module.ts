@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { TaskComponent } from './task/task.component'
 import { PheaderComponent } from './pheader/pheader.component';
 import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ContactComponent } from './contact/contact.component';
     RegisterComponent,
     LoginComponent,
     TaskComponent,
-    ContactComponent
+    ContactComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +42,8 @@ import { ContactComponent } from './contact/contact.component';
       {path : "register", component: RegisterComponent},
       {path: "login", component: LoginComponent},
       {path: "task/:userID",component: TaskComponent},
-      {path: "contact",component: ContactComponent}
-
+      {path: "contact",component: ContactComponent},
+      {path: "", component: HomeComponent}
     ])
     
   ],

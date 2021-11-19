@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  found = true;
   loginUser(user: any){
     axios.get('http://localhost:3000/api/users')
     .then( (response) => {
@@ -20,10 +20,12 @@ export class LoginComponent implements OnInit {
       for (var i = 0; i < response.data.length; i++){
         if(user.username == response.data[i]['username'] && user.password == response.data[i]['password']){
           const userID = response.data[i]['_id'];
+          this.found = true;
           this.route.navigate(['./task/', userID]);
           break;
         }
       };
+      this.found = false;
     })
     .catch( (error) => {
       // handle error

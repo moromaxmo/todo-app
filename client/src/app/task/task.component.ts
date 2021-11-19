@@ -43,11 +43,30 @@ export class TaskComponent implements OnInit {
       isDone: isDone,
       userID: this.myParam
     })
+    setTimeout( () => {
+      this.getUserTasks()
+  }, 200);
   }
   //Delete Task
   deleteTask(_id:String){
     var url = 'http://localhost:3000/api/task/'+_id;
     axios.delete(url);
+    setTimeout( () => {
+      this.getUserTasks()
+  }, 200);
+    
+  }
+
+  updateTask(Task : any){
+    axios.put('http://localhost:3000/api/task', {
+      title: Task.title,
+      isDone: !Task.isDone,
+      _id: Task._id
+    })
+    console.log("here")
+    setTimeout( () => {
+      this.getUserTasks()
+  }, 200);
   }
 
   logout(){
