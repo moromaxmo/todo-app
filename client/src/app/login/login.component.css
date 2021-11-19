@@ -125,3 +125,15 @@ form img{
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
   }
+  
+  label{
+  font-family: "Montserrat",sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  /*position: relative;
+  left: 50%;
+  top: 25%;*/
+  color:rgb(153, 18, 18);
+  transform: translate(-50%,-50%);
+  }
