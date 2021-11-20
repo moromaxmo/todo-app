@@ -8,15 +8,15 @@ import axios from 'axios';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-
   myParam: string | undefined;
+  tasks = new Array();
+
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
       this.route.params.subscribe((params: Params) => this.myParam = params['userID']);
+      
   }
-
-  tasks = new Array();
 
   //Show Tasks
   getUserTasks(): any{
@@ -29,13 +29,18 @@ export class TaskComponent implements OnInit {
           this.tasks.push(response.data[i]);
         }
       }
+      this.tasks.forEach(element => {
+        element['isEdit'] = false;
+      }); 
     })
     .catch( (error) => {
       // handle error
       console.log(error);
-    });  
+    }); 
+    
     return this.tasks;
   }
+
   //Save Task
   addNewTask(title:string, isDone: boolean){
     axios.post('http://localhost:3000/api/task', {
@@ -57,19 +62,41 @@ export class TaskComponent implements OnInit {
     
   }
 
-  updateTask(Task : any){
-    axios.put('http://localhost:3000/api/task', {
+  editMode(Task : any){
+    Task.isEdit = true;
+  }
+
+  //UPDATE TASK TITLE
+  saveEditedTask(Task : any, title: any){
+    Task.isEdit = true;
+    var url = 'http://localhost:3000/api/task/'+Task._id;
+    axios.put(url, {
       title: Task.title,
-      isDone: !Task.isDone,
-      _id: Task._id
+      isDone: Task.isDone
     })
-    console.log("here")
     setTimeout( () => {
       this.getUserTasks()
   }, 200);
   }
 
+  //Update task progress
+  changeState(Task : any){
+    var url = 'http://localhost:3000/api/task/'+Task._id;
+    axios.put(url, {
+      "isDone": !Task.isDone,
+    })
+    setTimeout( () => {
+      this.getUserTasks()
+  }, 200);
+  }
+  
+  closeEditMode(Task:any){
+    Task.isEdit = false;
+  }
+
+  //log out
   logout(){
     this.router.navigate(['/']);
   }
+  
 }
