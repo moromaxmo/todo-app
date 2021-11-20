@@ -55,30 +55,32 @@ router.delete('/task/:id', function(req, res, next){
 
 // Update Task
 router.put('/task/:id', function(req, res, next){
-    var task = req.body;
-    var updTask = {};
-    
-    if(task.isDone){
-        updTask.isDone = task.isDone;
-    }
-    
-    if(task.title){
-        updTask.title = task.title;
-    }
-    
-    if(!updTask){
-        res.status(400);
-        res.json({
-            "error":"Bad Data"
-        });
-    } else {
-        db.tasks.update({_id: mongojs.ObjectId(req.params.id)},updTask, {}, function(err, task){
+    var paramTask = req.body;
+
+    db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, oldTask){
         if(err){
             res.send(err);
         }
-        res.json(task);
+        //res.json(task_found);
+        if(!req.body.title){
+            paramTask.title = oldTask.title;
+        }
+        if(req.body.isDone === ""){
+            paramTask.isDone = oldTask.isDone;
+        }
+        newTask = {
+            '_id': oldTask._id,
+            'title': paramTask.title,
+            'isDone': paramTask.isDone,
+            'userID': oldTask.userID
+        }
+        try {
+            db.tasks.replaceOne(oldTask,newTask);
+            res.json(newTask);
+        } catch (error) {
+            console.log(error);
+        }
     });
-    }
 });
 
 

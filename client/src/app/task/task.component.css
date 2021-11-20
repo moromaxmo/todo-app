@@ -81,16 +81,16 @@ th, td {
 }
 
 .column1 {
-  width: 35%;
+  width: 40%;
   /*padding-left: 40px;*/
 }
 
 .column2 {
-  width: 30%;
+  width: 20%;
 }
 
 .column3 {
-  width: 25%;
+  width: 20%;
 }
 
 .table100-head th {
@@ -284,4 +284,40 @@ input[type=text] {
   padding: 18px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+}
+.btn {
+  background: #428eff;
+  border: 1px solid #428eff;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  margin: 5px;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #428eff;
+}
+
+.btn:active {
+  opacity: .5;
 }
