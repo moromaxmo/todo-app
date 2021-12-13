@@ -1,17 +1,23 @@
 <main>
-<div class = "center">
-<!-- <mat-toolbar class = "toolbar">
-    <a routerLink = "/login">Login</a>
-    <span style="flex: 1 1 auto"></span>
-    <a routerLink = "/register">Sign Up For FREE!</a>
-</mat-toolbar> -->
-<ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/login">Login</a></li>
-    <li><a routerLink="/register">Register</a></li>
-    <li><a routerLink="/contact">Contact us</a></li>
-</ul>
-
+<div class = "NavBar">
+    <div id = "NavContainer">
+        <img src="\assets\Logo\Logo-01.png" class="logo" width="120">
+        
+        <ul>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/contact">Contact us</a></li>
+            <li><a routerLink="/aboutus">About us</a></li>
+        </ul>
+        <div class="Login">
+            <button class="button-82-pushable" role="button" routerLink="/login">
+              <span class="button-82-shadow"></span>
+              <span class="button-82-edge"></span>
+              <span class="button-82-front text">
+                Login
+              </span>
+            </button>
+          </div>       
 <router-outlet></router-outlet>
+</div>
 </div>
 </main>
