@@ -1,23 +1,24 @@
 <main>
-<div class = "NavBar">
-    <div id = "NavContainer">
-        <img src="\assets\Logo\Logo-01.png" class="logo" width="120">
-        
+  <div class="NavBar">
+    <div id="NavContainer">
+      <img src="\assets\Logo\Logo-01.png" class="logo" width="120">
+      <div class="NavButtons">
         <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/contact">Contact us</a></li>
-            <li><a routerLink="/aboutus">About us</a></li>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/contact">Contact us</a></li>
+          <li><a routerLink="/aboutus">About us</a></li>
         </ul>
-        <div class="Login">
-            <button class="button-82-pushable" role="button" routerLink="/login">
-              <span class="button-82-shadow"></span>
-              <span class="button-82-edge"></span>
-              <span class="button-82-front text">
-                Login
-              </span>
-            </button>
-          </div>       
-<router-outlet></router-outlet>
-</div>
-</div>
+      </div>
+      <div class="Login">
+        <button class="button-82-pushable" role="button" routerLink="/login">
+          <span class="button-82-shadow"></span>
+          <span class="button-82-edge"></span>
+          <span class="button-82-front text">
+            Login
+          </span>
+        </button>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </main>
