@@ -80,8 +80,6 @@ router.put('/task/:id', function(req, res, next){
             'userID': oldTask.userID
         }
         try {
-            console.log(newTask);
-            console.log(oldTask);
             tasks.updateOne({_id : oldTask._id},newTask , {}, function f(err,result) {
                 if (err){
                     res.sendStatus(500);
