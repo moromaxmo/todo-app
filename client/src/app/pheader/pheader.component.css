@@ -1,53 +1,178 @@
-.toolbar{
-    background: rgb(25, 146, 146);
-}
-table, th, td {
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 50%;
-  }
-  th, td {
-    background-color: #93acff;
-  }
 
-thead,tfoot {
-    background-color: #333;
-}
-
-.center {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
+  .logo {
     float: left;
+    margin-left: 20px;
+    margin-right: 134px;
+    
+  }
+
+  #NavContainer {
+    width: 100%;
+    margin: 0 auto;
+    height: 70px;
   }
   
-  li a {
-    left: 50%;
-    margin: 6px;
-    display: block;
-    color: white;
+  .NavBar {
+    background-color: none;
+    height: 72px;
+    width: 100%;
+    padding-top: 20px;
+  }
+  
+  .NavBar ul {
+    padding: 0px;
+    margin: 0px;
     text-align: center;
-    padding: 14px 30px;
-    text-decoration: none;
-    border-radius:4px;
-    transition: box-shadow .3s;
-    font-family: "Montserrat",sans-serif;
-    font-weight:lighter;
-    font-size:15pt;
+    float: left;
+    background: none;
     
   }
   
-  li a:hover {
-    box-shadow: 0px 0px 40px -10px rgb(123, 219, 194); 
-    background: rgb(34,193,195);
-    background: linear-gradient(30deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  .NavBar li {
+    list-style-type: none;
+    padding-right: 10px;
+    display: inline-flex;
+    
+  }
+  
+  .NavBar li a {
+    margin-top:10px;
+    font-size: 26px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    line-height: 45px;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 1;
+    display:inline-block;
+    border:0.1em solid #012D35;
+    border-radius:5px;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#000000;
+    text-align:center;
+    transition: all 0.2s;
+  }
+
+  .NavBar li a:hover{
+    color:#FFFFFF;
+    background-color:#012D35;
+
+  }
+  @media all and (max-width:30em){
+  .NavBar li a{
+  display:block;
+  margin:0.4em auto;
+  }
+}
+
+  div.Login{
+    float: right;
+    margin-right: 20px;
+    padding: 12px;
+    opacity: 1;
+  }
+
+  .button-82-pushable {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-82-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+  
+  .button-82-edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(
+      to left,
+      hsl(340deg 100% 16%) 0%,
+      hsl(340deg 100% 32%) 8%,
+      hsl(340deg 100% 32%) 92%,
+      hsl(340deg 100% 16%) 100%
+    );
+  }
+  
+  .button-82-front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition:
+      transform
+      600ms
+      cubic-bezier(.3, .7, .4, 1);
+  }
+  
+  @media (min-width: 768px) {
+    .button-82-front {
+      font-size: 1.25rem;
+      padding: 12px 42px;
+    }
+  }
+  
+  .button-82-pushable:hover {
+    filter: brightness(110%);
+  }
+  
+  .button-82-pushable:hover .button-82-front {
+    transform: translateY(-6px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  
+  .button-82-pushable:active .button-82-front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+  }
+  
+  .button-82-pushable:hover .button-82-shadow {
+    transform: translateY(4px);
+    transition:
+      transform
+      250ms
+      cubic-bezier(.3, .7, .4, 1.5);
+  }
+  
+  .button-82-pushable:active .button-82-shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+  }
+  
+  .button-82-pushable:focus:not(:focus-visible) {
+    outline: none;
   }
