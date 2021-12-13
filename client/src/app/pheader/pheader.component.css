@@ -16,7 +16,6 @@
     background-color: none;
     height: 72px;
     width: 100%;
-    padding-top: 20px;
   }
   
   .NavBar ul {
@@ -45,20 +44,21 @@
     padding-right: 20px;
     opacity: 1;
     display:inline-block;
-    border:0.1em solid #012D35;
+    border:0.1em solid #003a444b;
     border-radius:5px;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
     font-weight:300;
-    color:#000000;
+    color:#FFFFFF;
     text-align:center;
     transition: all 0.2s;
+    background-color:#0a6e80;
   }
 
   .NavBar li a:hover{
     color:#FFFFFF;
-    background-color:#012D35;
+    background-color:#003a444b;
 
   }
   @media all and (max-width:30em){
