@@ -1,12 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var mongojs = require('mongojs');
-var db = mongojs('mongodb+srv://admin:admin@todo-app.buw1i.mongodb.net/todo-app?retryWrites=true&w=majority', ['users']);
+var mongoose = require('mongoose');
+var cors = require('cors');
 
+const userSchema = new mongoose.Schema({
+    username: String,
+    password: String
+  });
+
+const users = mongoose.model('User', userSchema);
 
 // Get All users
 router.get('/users', function(req, res, next){
-    db.users.find(function(err, users){
+    users.find(function(err, users){
         if(err){
             res.send(err);
         }
@@ -16,7 +22,7 @@ router.get('/users', function(req, res, next){
 
 // Get Single user
 router.get('/user/:id', function(req, res, next){
-    db.users.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, user){
+    users.findOne({_id: req.params.id}, function(err, user){
         if(err){
             res.send(err);
         }
@@ -33,18 +39,19 @@ router.post('/user', function(req, res, next){
             "error": "Bad Data"
         });
     } else {
-        db.users.save(user, function(err, user){
+        var userDoc = users(user);
+        userDoc.save((err,result) => {
             if(err){
-                res.send(err);
+                res.sendStatus(500);
             }
-            res.json(user);
-        });
+            res.sendStatus(200);
+        })
     }
 });
 
 // Delete user
 router.delete('/user/:id', function(req, res, next){
-    db.users.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, user){
+    users.deleteOne({_id: req.params.id}, function(err, user){
         if(err){
             res.send(err);
         }
@@ -71,7 +78,7 @@ router.put('/user/:id', function(req, res, next){
             "error":"Bad Data"
         });
     } else {
-        db.users.update({_id: mongojs.ObjectId(req.params.id)},upduser, {}, function(err, user){
+        users.updateOne({_id: req.params.id},upduser, {}, function(err, user){
         if(err){
             res.send(err);
         }
@@ -79,6 +86,7 @@ router.put('/user/:id', function(req, res, next){
     });
     }
 });
+
 /*
 function userNameExists(user){
     if(db.users.findOne({username: user})){

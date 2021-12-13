@@ -1,23 +1,29 @@
 var express = require('express');
 var router = express.Router();
-var mongojs = require('mongojs');
-var db = mongojs('mongodb+srv://admin:admin@todo-app.buw1i.mongodb.net/todo-app?retryWrites=true&w=majority', ['tasks']);
+var mongoose = require('mongoose');
 var cors = require('cors');
+
+const taskSchema = new mongoose.Schema({
+    title: String,
+    isDone: Boolean,
+    userID: String
+  });
+
+const tasks = mongoose.model('Task', taskSchema);
 
 // Get All Tasks
 router.get('/tasks', function(req, res, next){
-    db.tasks.find(function(err, tasks){
+    tasks.find(function(err, tasks){
         if(err){
             res.send(err);
         }
         res.json(tasks);
-        //res.render('tasks.html',tasks);
     });
 });
 
 // Get Single Task
 router.get('/task/:id', function(req, res, next){
-    db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, task){
+    tasks.findOne({_id: req.params.id }, function(err, task){
         if(err){
             res.send(err);
         }
@@ -25,7 +31,7 @@ router.get('/task/:id', function(req, res, next){
     });
 });
 
-//Save Task
+//Save A Task
 router.post('/task', function(req, res, next){
     var task = req.body;
     if(!task.title || !(task.isDone + '') || !task.userID){
@@ -34,18 +40,19 @@ router.post('/task', function(req, res, next){
             "error": "Bad Data"
         });
     } else {
-        db.tasks.save(task, function(err, task){
+        var taskDoc = tasks(task);
+        taskDoc.save((err,result) => {
             if(err){
-                res.send(err);
+                res.sendStatus(500);
             }
-            res.json(task);
-        });
+            res.sendStatus(200);
+        })
     }
 });
 
 // Delete Task
 router.delete('/task/:id', function(req, res, next){
-    db.tasks.remove({_id: mongojs.ObjectId(req.params.id)}, function(err, task){
+    tasks.deleteOne({_id: req.params.id}, function(err, task){
         if(err){
             res.send(err);
         }
@@ -56,12 +63,10 @@ router.delete('/task/:id', function(req, res, next){
 // Update Task
 router.put('/task/:id', function(req, res, next){
     var paramTask = req.body;
-
-    db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)}, function(err, oldTask){
+    tasks.findOne({_id: req.params.id}, function(err, oldTask){
         if(err){
             res.send(err);
         }
-        //res.json(task_found);
         if(!req.body.title){
             paramTask.title = oldTask.title;
         }
@@ -75,13 +80,18 @@ router.put('/task/:id', function(req, res, next){
             'userID': oldTask.userID
         }
         try {
-            db.tasks.replaceOne(oldTask,newTask);
+            console.log(newTask);
+            console.log(oldTask);
+            tasks.updateOne({_id : oldTask._id},newTask , {}, function f(err,result) {
+                if (err){
+                    res.sendStatus(500);
+                }
+            });
             res.json(newTask);
         } catch (error) {
             console.log(error);
         }
     });
 });
-
 
 module.exports = router;
