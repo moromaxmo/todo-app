@@ -1,65 +1,99 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<main>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<br> <br> <br> <br> <br> <br>
 <div>
-<br>
-<br>
-<br>
-<div class = "limiter">
-  <div class = "container-table100">
-    <div class = "wrap-table100">
-      <div class = "table100 ver3">
-        <div class = "table100-head">
-          <table>
-            <tr class = "row100 head">
-              <th class = "cell100 column1"> Task</th>
-              <th class = "cell100 column2"> Progress</th>
-              <th class = "cell100 column3"> Actions</th>
-            </tr>
-          </table>
-        </div>
-        <div class = "table100-body js-pscroll ps ps--active-y">
-          <table id = "content-table">
-            <tbody>
-              <tr class = "row100 body" *ngFor="let task of tasks">
-                <td class = "cell100 column1"> 
-                  <div *ngIf="!task.isEdit">
-                    {{task.title}}
-                  </div>
-                  <div *ngIf="task.isEdit">
-                    <input type="text"  [(ngModel)] = "task.title"  required
-                    minlength="3" maxlength="25" size="25" margin=3px #Tasktitle/>
-                  </div>
-                 </td>
-                <td class = "cell100 column2"> 
-                  <input type="checkbox" id="Finished" (click) = changeState(task) *ngIf = "task.isDone" checked>
-                  <input type="checkbox" id="Finished" (click) = changeState(task) *ngIf = "!task.isDone" >
-                 </td>
-                <td class = "cell100 column3">
-                  <div *ngIf="!task.isEdit">
-                    <button class = "btn" (click)=editMode(task) ><i class="fa fa-edit"></i></button>
-                    <button class = "button-24" (click)="deleteTask(task._id)" ><i class="fa fa-trash"></i></button>
-                  </div>
-                  <div *ngIf="task.isEdit">
-                    <button class = "btn" (click)=saveEditedTask(task,Tasktitle) ><i class="fa fa-save"></i></button>
-                    <button class = "btn" (click)=closeEditMode(task) ><i class="fa fa-close"></i></button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="table-wrapper">
+    <table class="fl-table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Progress</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>
+            <div *ngIf="!task.isEdit">
+              {{ task.title }}
+            </div>
+            <div *ngIf="task.isEdit">
+              <input
+                type="text"
+                [(ngModel)]="task.title"
+                required
+                minlength="3"
+                maxlength="25"
+                size="25"
+                margin="3px"
+                #Tasktitle
+              />
+            </div>
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="Finished"
+              (click)="changeState(task)"
+              *ngIf="task.isDone"
+              checked
+            />
+            <input
+              type="checkbox"
+              id="Finished"
+              (click)="changeState(task)"
+              *ngIf="!task.isDone"
+            />
+          </td>
+          <td>
+            <div *ngIf="!task.isEdit">
+              <button class="btn" (click)="editMode(task)">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button class="button-24" (click)="deleteTask(task._id)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+            <div *ngIf="task.isEdit">
+              <button class="btn" (click)="saveEditedTask(task, Tasktitle)">
+                <i class="fa fa-save"></i>
+              </button>
+              <button class="btn" (click)="closeEditMode(task)">
+                <i class="fa fa-close"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <div class="center">
+    <input
+      type="text"
+      id="addnew"
+      name="addnew"
+      required
+      minlength="3"
+      maxlength="25"
+      size="100"
+      placeholder="Enter task title"
+      margin="3px"
+      #Tasktitle
+    />
+    <br />
+    <button class="button-29" (click)="getUserTasks()" style="margin: 5px">
+      View Tasks
+    </button>
+    <button class="button-81" (click)="addNewTask(Tasktitle.value, false)">
+      Add
+    </button>
+    <br />
+    <button class="button-29" (click)="logout()" style="margin: 5px">
+      Log Out
+    </button>
+  </div>
+
 </div>
-<br>
-  <input type="text" id="addnew" name="addnew" required
-       minlength="3" maxlength="25" size="25" placeholder="Enter task title" margin=3px #Tasktitle>
-       <br>
-       <button class = "button-29" (click)="getUserTasks()" style="margin:5px;">View Tasks</button>
-       <button class = "button-81" (click) = "addNewTask(Tasktitle.value,false)">Add</button>
-       <br>
-       <br>
-       <button class = "button-29" (click)="logout()" style="margin:5px;">Log Out</button>
-</div>
-</main>
