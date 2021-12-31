@@ -10,7 +10,7 @@ import axios from 'axios';
 export class TaskComponent implements OnInit {
   myParam: string | undefined;
   tasks = new Array();
-
+  server_url  = process.env['server_url'] || 'http://localhost:3000';
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
@@ -21,7 +21,8 @@ export class TaskComponent implements OnInit {
   //Show Tasks
   getUserTasks(): any{
     this.tasks = [];
-    axios.get('http://localhost:3000/api/tasks')
+    var url = this.server_url + 'api/tasks';
+    axios.get(url)
     .then( (response) => {
       // handle success
       for (var i = 0; i < response.data.length; i++){
@@ -43,7 +44,8 @@ export class TaskComponent implements OnInit {
 
   //Save Task
   addNewTask(title:string, isDone: boolean){
-    axios.post('http://localhost:3000/api/task', {
+    var url = this.server_url + 'api/task';
+    axios.post(url, {
       title: title,
       isDone: isDone,
       userID: this.myParam
@@ -54,7 +56,7 @@ export class TaskComponent implements OnInit {
   }
   //Delete Task
   deleteTask(_id:String){
-    var url = 'http://localhost:3000/api/task/'+_id;
+    var url = this.server_url + 'api/task/' + _id;
     axios.delete(url);
     setTimeout( () => {
       this.getUserTasks()
@@ -69,7 +71,7 @@ export class TaskComponent implements OnInit {
   //UPDATE TASK TITLE
   saveEditedTask(Task : any, title: any){
     Task.isEdit = true;
-    var url = 'http://localhost:3000/api/task/'+Task._id;
+    var url = this.server_url + 'api/task/' + Task._id;
     axios.put(url, {
       title: Task.title,
       isDone: Task.isDone
@@ -81,7 +83,7 @@ export class TaskComponent implements OnInit {
 
   //Update task progress
   changeState(Task : any){
-    var url = 'http://localhost:3000/api/task/'+Task._id;
+    var url = this.server_url + 'api/task/' + Task._id;
     axios.put(url, {
       "isDone": !Task.isDone,
     })
