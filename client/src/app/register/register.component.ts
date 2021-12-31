@@ -15,9 +15,7 @@ export class RegisterComponent implements OnInit {
 
 
   registerUser(user: any){
-    const server_url  = process.env['server_url'] || 'http://localhost:3000';
-    var url = server_url + '/api/user';
-    axios.post(url, {
+    axios.post('http://localhost:3000/api/user', {
       username: user.username,
       password: user.password
     })
