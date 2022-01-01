@@ -1,10 +1,10 @@
-FROM quay.io/bitnami/node
-
+FROM node
+#init a dir to copy project to
 WORKDIR /app
 COPY package.json package-lock.json ./
-
+#installing requirements
 RUN npm install
 COPY . .
+#specifying port num inide container
 EXPOSE 4200
-CMD [ "npm","start"]
-#RUN npm start
+#launch client side

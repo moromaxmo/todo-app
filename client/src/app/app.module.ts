@@ -14,7 +14,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { TaskComponent } from './task/task.component'
 import { PheaderComponent } from './pheader/pheader.component';
-import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 
 
@@ -25,7 +24,6 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     LoginComponent,
     TaskComponent,
-    ContactComponent,
     HomeComponent
   ],
   imports: [
@@ -42,7 +40,6 @@ import { HomeComponent } from './home/home.component';
       {path : "register", component: RegisterComponent},
       {path: "login", component: LoginComponent},
       {path: "task/:userID",component: TaskComponent},
-      {path: "contact",component: ContactComponent},
       {path: "", component: HomeComponent}
     ])
     
