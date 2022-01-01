@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,7 @@ import axios from 'axios';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  server_url = AppComponent.server_url;
   constructor() { }
 
   ngOnInit(): void {
@@ -15,10 +16,13 @@ export class RegisterComponent implements OnInit {
 
 
   registerUser(user: any){
-    axios.post('http://localhost:3000/api/user', {
+    const endpoint = 'user';
+    const url = this.server_url+endpoint;
+    axios.post(url, {
       username: user.username,
       password: user.password
     })
+    console.log('User registered successfully')
   }
   
 }

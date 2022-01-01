@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,16 @@ import axios from 'axios';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  server_url = AppComponent.server_url;
   constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
   found = true;
   loginUser(user: any){
-    axios.get('http://localhost:3000/api/users')
+    const endpoint = 'users';
+    const url = this.server_url+endpoint;
+    axios.get(url)
     .then( (response) => {
       // handle success
       for (var i = 0; i < response.data.length; i++){
