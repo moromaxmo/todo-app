@@ -1,17 +1,10 @@
-FROM quay.io/bitnami/node
-
-RUN adduser root
-
+FROM node
+#init a dir to copy project to
 WORKDIR /app
 COPY package.json package-lock.json ./
-
-RUN chmod -R 775 /app
-RUN chown -R root /app
-
+#installing requirements
 RUN npm install
 COPY . .
+#specifying port num inide container
 EXPOSE 4200
-
-USER root
-CMD [ "npm","start"]
-#RUN npm start
+#launch client side
