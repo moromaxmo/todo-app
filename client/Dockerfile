@@ -1,6 +1,5 @@
 FROM quay.io/bitnami/node
 #init a dir to copy project to
-USER node
 WORKDIR /app
 COPY package.json package-lock.json ./
 #installing requirements
