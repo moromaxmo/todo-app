@@ -1,4 +1,4 @@
-FROM node
+FROM quay.io/bitnami/node
 #init a dir to copy project to
 WORKDIR /app
 COPY package.json package-lock.json ./
