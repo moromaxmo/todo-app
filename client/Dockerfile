@@ -1,12 +1,12 @@
 FROM quay.io/bitnami/node
 
-RUN adduser node root
+RUN adduser root
 
 WORKDIR /app
 COPY package.json package-lock.json ./
 
 RUN chmod -R 775 /app
-RUN chown -R node:root /app
+RUN chown -R root /app
 
 RUN npm install
 COPY . .
