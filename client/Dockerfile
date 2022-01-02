@@ -10,4 +10,4 @@ COPY . .
 #specifying port num inide container
 EXPOSE 4200
 #launch client side
-CMD [ "npm", "start"]
+CMD [ "npm", "start", "--", "--host", "0.0.0.0"]
