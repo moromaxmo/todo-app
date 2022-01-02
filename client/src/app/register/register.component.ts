@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { AppComponent } from '../app.component';
 })
 export class RegisterComponent implements OnInit {
   server_url = AppComponent.server_url;
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +24,8 @@ export class RegisterComponent implements OnInit {
       username: user.username,
       password: user.password
     })
-    console.log('User registered successfully')
+    console.log('User registered successfully');
+    this.route.navigate(['./login']);
   }
   
 }
