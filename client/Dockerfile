@@ -8,4 +8,4 @@ COPY . .
 #specifying port num inide container
 EXPOSE 4200
 #launch client side
-ENTRYPOINT [ "npm start"]
+CMD [ "npm start"]
